@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/src/css/home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vilar-réseau</title>
+</head>
+<body>
+    <h2>Bienvenue, {{ username }}!</h2>
+    
+    <div class="container">
+
+        <div class="left-column">
+
+            <div class="chat-global">
+
+                <div class="nav-top">
+
+                    <div class="utilisateur">
+                        <p>Jean Vilar</p>
+                    </div>
+
+                </div>
+
+                <div class="conversation">
+
+                    <div class="talk-left">
+                        <p class="autre-user-qui-parle">L'autre</p><!--mettre le username de l'autre acolade-->
+                        <p class="ce-que-dit-l'autre">je suis autre et je parle</p>
+                    </div>
+                    <div class="talk-right">
+                        <p class="user-moi-le-bleu">{{username}}</p>
+                        <p class="ce-que-moi-dit">je suis moi et je parle </p>
+                    </div>
+                </div>   
+
+            </div>
+
+        </div>
+
+        <div class="right-column">
+            <!-- Contenu de la colonne de droite -->
+            <p>Contenu de droite</p>
+        </div>
+
+    </div>
+
+    <form class="chat-form">
+        <div class="container-user-input">
+            <div class="files-logo-cont">
+                <img src="essources/paper-clip.svg" alt="">
+            </div>
+        </div>
+    </form>
+    <script src="/Users/gabrieljeanvermeille/venv/bin/Vilar_reseau/static/src/javascript/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/src/css/input.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vilar-réseau : it's login time !</title>
+</head>
+<body>
+    <div class="container">
+        <div class="right-column">
+            <h1>Connectez-vous !</h1>
+            <form action="/login" method="POST">
+                <p>Nom d'utilisateur : </p>
+                <input type="text" id="username" name="username">
+                <button class="first" type="submit">Se connecter</button>
+        </form>
+        </div>
+        <div class="left-column">
+            <h2>Pas encore de compte ?</h2>
+            <form action="/login", method="POST">
+                <p>Quel est le batiment des sciences : A, B, C ou D ?</p>
+                <input type="text" id="in_lycée" name="in_lycée">
+                <p>Ton nom d'utilisateur : </p>
+                <input type="text" id="new_username" name="new_username">
+                <button class="second" type="submit">S'inscrire</button>
+        </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

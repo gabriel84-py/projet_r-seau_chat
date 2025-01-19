@@ -1,0 +1,60 @@
+/* Styles généraux pour le corps de la page */
+body {
+    font-family: 'Arial', sans-serif; /* Police moderne */
+    background-color: #f4f4f4; /* Couleur de fond douce */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centrer le contenu horizontalement */
+    align-items: center; /* Centrer le contenu verticalement */
+    height: 100vh; /* Prendre toute la hauteur de la fenêtre */
+}
+
+/* Conteneur principal pour les sections */
+.container {
+    display: flex;
+    flex-direction: column; /* Disposer les colonnes en colonne */
+    width: 300px; /* Largeur fixe pour le conteneur */
+}
+
+/* Styles pour les sections */
+.left-column, .right-column {
+    background-color: white; /* Fond blanc pour les sections */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    padding: 20px; /* Espacement intérieur */
+    margin-bottom: 15px; /* Espacement entre les sections */
+}
+
+/* Styles pour les titres */
+h2 {
+    text-align: center; /* Centrer le texte */
+    color: #333; /* Couleur du texte */
+}
+
+/* Styles pour les champs de saisie */
+input[type="text"], input[type="password"] {
+    width: 100%; /* Prendre toute la largeur */
+    padding: 10px; /* Espacement intérieur */
+    margin: 10px 0; /* Espacement vertical */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 4px; /* Coins arrondis */
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+}
+
+/* Styles pour les boutons */
+button {
+    background-color: #5cb85c; /* Couleur de fond verte */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 10px; /* Espacement intérieur */
+    border-radius: 4px; /* Coins arrondis */
+    cursor: pointer; /* Curseur pointer sur hover */
+    width: 100%; /* Prendre toute la largeur */
+    font-size: 16px; /* Taille de police */
+}
+
+/* Effet de survol pour les boutons */
+button:hover {
+    background-color: #4cae4c; /* Couleur de fond plus foncée au survol */
+}

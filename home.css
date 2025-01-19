@@ -1,0 +1,18 @@
+/* Ajout de styles pour diviser la page en deux colonnes */
+.container {
+    display: flex;
+    height: 100vh;
+}
+.left-column, .right-column {
+    flex: 1; /* Chaque colonne prend une part égale de l'espace */
+    padding: 20px; /* Ajout d'un peu d'espace intérieur */
+
+}
+.left-column {
+    flex: 2; /* Colonne de droite prend 2 parts */
+    padding: 20px; /* Ajout d'un peu d'espace intérieur */
+    background-color: #f0f0f0; /* Couleur de fond pour la colonne de gauche */
+}
+.right-column {
+    background-color: #ffffff; /* Couleur de fond pour la colonne de droite */
+}
