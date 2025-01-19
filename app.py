@@ -38,48 +38,109 @@ import os
 app = Flask(__name__)
 
 usernamesok = ["gabriel"]
-go_to_login_verif = False
-chemin_fichier = "/Users/gabrieljeanvermeille/venv/bin/Vilar_reseau/mdp.txt"
+mdpok = ["GABRIEL;30400"]
+chemin_fichier = "/Users/gabrieljeanvermeille/venv/bin/Vilar_reseau/usernames.txt"
+chemin_fichier2 = "/Users/gabrieljeanvermeille/venv/bin/Vilar_reseau/mdp.txt"
+user_data = {"gabriel": "GABRIEL;30400"}  # Utilisation d'un dictionnaire pour stocker les utilisateurs et leurs mots de passe
+
 
 @app.route('/')
 def principale():
     return redirect('/login')
 
 @app.route('/login', methods=['GET', 'POST'])
-
 def login():
     global chemin_fichier
+    global chemin_fichier2
     global usernamesok
-    global go_to_login_verif
     global inlycee
+    global password
+    global new_password
+    global user_data
+
     if request.method == 'POST':
         new_username = request.form.get('new_username')
+        new_password = request.form.get('new-password')
         username = request.form.get('username')
         inlycee = request.form.get('in_lycée')
-        if new_username:
-            if inlycee == "C":    
-                usernamesok.append(new_username)
+        password = request.form.get('mot-de-passe')
+
+        # Ajoutez un message de débogage pour afficher tous les champs
+        print(f'new_username: {new_username}, new_password: {new_password}, username: {username}, inlycee: {inlycee}, password: {password}')
+
+        if inlycee == "C":
+            if new_username and new_password:  # Vérifiez si un nouveau nom d'utilisateur et un mot de passe sont fournis
+                user_data[new_username] = new_password  # Ajoutez le nouvel utilisateur au dictionnaire
+                print(f'Nouvel utilisateur ajouté : {new_username}')
+                
                 with open(chemin_fichier, 'a') as fichier:
                     fichier.write(new_username + '\n')  
-                print(f'nwbie : {new_username}')
-        print(f"Username reçu : {username}")
-        if username in usernamesok:
-            go_to_login_verif = True
-            return redirect(url_for('home', username=username))
+                        
+                with open(chemin_fichier2, 'a') as fichier:
+                    fichier.write(new_password + '\n')  # Écrire le mot de passe au lieu du nom d'utilisateur
+
+        if username in user_data:  # Vérifiez si l'utilisateur existe dans le dictionnaire
+            print('ok ça va')
+            print(f'Mot de passe entré : {password}')  # Affiche le mot de passe entré pour le débogage
+            print(f'Mot de passe attendu : {user_data[username]}')  # Affiche le mot de passe attendu pour le débogage
+            if password == user_data[username]:  # Vérifiez si le mot de passe correspond
+                print('c bon')
+                return redirect(url_for('home', username=username))
+            else:
+                return render_template("login.html", error="Mauvais mot de passe !")
         else:
-            return render_template("login.html", error="Mauvais mdp !")
-    return render_template('login.html')
+            return render_template("login.html", error="Mauvais nom d'utilisateur !")
+
+    return render_template('login.html')  # Assurez-vous de retourner le modèle pour les requêtes GET
 
 @app.route('/home') 
 
 def home():
-    global go_to_login_verif
-    if go_to_login_verif == True:
-        username = request.args.get('username')
-        go_to_login_verif = False
-        return render_template('home.html', username=username)
-    else:
-        return redirect('/login')
+    username = request.args.get('username')
+    return render_template('home.html', username=username)
+
 
 if __name__ == "__main__":
-    app.run(debug=True, host='127.0.0.1', port='5000')
+    app.run(debug=True, host='0.0.0.0', port='5000')
+
+
+
+# ... existing code ...
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    global chemin_fichier
+    global chemin_fichier2
+    global usernamesok
+    global inlycee
+    global password
+    global new_password
+    if request.method == 'POST':
+        new_username = request.form.get('new_username')
+        new_password = request.form.get('new-password')
+        username = request.form.get('username')
+        inlycee = request.form.get('in_lycée')
+        password = request.form.get('mot-de-passe')
+
+        if inlycee == "C":
+            if new_username and new_password:  # Vérifiez si un nouveau nom d'utilisateur et un mot de passe sont fournis
+                user_data[new_username] = new_password  # Ajoutez le nouvel utilisateur au dictionnaire
+                print(f'Nouvel utilisateur ajouté : {new_username}')
+                
+                with open(chemin_fichier, 'a') as fichier:
+                    fichier.write(new_username + '\n')  
+                        
+                with open(chemin_fichier2, 'a') as fichier:
+                    fichier.write(new_password + '\n')  # Écrire le mot de passe au lieu du nom d'utilisateur
+
+        if username in user_data:  # Vérifiez si l'utilisateur existe dans le dictionnaire
+            if password == user_data[username]:  # Vérifiez si le mot de passe correspond
+                return redirect(url_for('home', username=username))
+            else:
+                return render_template("login.html", error="Mauvais mot de passe !")  # Message d'erreur
+        else:
+            return render_template("login.html", error="Mauvais nom d'utilisateur !")  # Message d'erreur
+
+    return render_template('login.html')  # Assurez-vous de retourner le modèle pour les requêtes GET
+
+# ... existing code ...
